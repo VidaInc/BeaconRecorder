@@ -131,7 +131,7 @@
     }
     
     transmitter.lastSighted = updateTime;
-    
+    NSLog(@"ID: %@, RSSI: %@", visit.transmitter.identifier, RSSI);
     if ([self shouldUpdateTransmitterCell:visit transmitter:transmitter RSSI:RSSI])
     {
         transmitter.previousRSSI = transmitter.rssi;
