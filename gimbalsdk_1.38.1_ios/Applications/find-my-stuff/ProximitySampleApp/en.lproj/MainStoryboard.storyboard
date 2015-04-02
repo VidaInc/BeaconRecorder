@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMr-1T-VXz">
-                                <rect key="frame" x="34" y="180" width="252" height="230"/>
+                                <rect key="frame" x="34" y="0.0" width="252" height="230"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="re3-AL-9xB">
                                         <rect key="frame" x="0.0" y="132" width="252" height="42"/>
