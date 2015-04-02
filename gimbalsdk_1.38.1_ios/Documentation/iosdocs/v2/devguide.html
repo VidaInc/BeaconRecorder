@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gimbal iOS Version 2 API Developer Guide</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/overrides.css" rel="stylesheet">
+    <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-nav" onload="prettyPrint();">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="https://manager.gimbal.com"><img src="../../images/gimbal_logo.png"></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                      
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../index.html">Overview</a></li>
+                            <li><a href="../../proximity_overview.html">Proximity Overview</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            iOS
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../../iosdocs/v2/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../../ios_v2_api/index.html">API Reference</a></li>
+                            </ul>
+                          </li> 
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../../iosdocs/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../../iosdocs/v1/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../../ios/html/index.html">API Reference</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Android
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../../android/v2/devguide.html">Developer Guide</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="../../android/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../../android/v1/devguide.html">Developer Guide</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            REST API
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../restapi/rest.html">Manager REST API</a></li>
+                            <li><a href="../../restapi/restV2.html">Places REST API Beta</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            User Manuals
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../manuals/S21.html">Series 21 Proximity Beacon</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+    <div class="row-fluid">
+
+<div class="span3">
+    <div id="sidenav" class="well sidebar-nav sidebar-nav-fixed" style="overflow-y:auto;height:auto;">
+        <ul class="nav nav-list">
+
+            <li><a href="#create_your_developer_account">Create Your Gimbal Developer Account</a></li>
+
+            <li class="nav-header"><a href="#create_app">Create Your iOS Application</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#confirm_your_environment">Confirm Your Environment</a></li>
+                <li><a href="#create_new_xcode_project">Create a new Xcode Project</a></li>
+                <li><a href="#add_ios_library">Add iOS Library</a></li>
+                <li><a href="#add_gimbal_framework">Add Gimbal Framework</a></li>
+                <li><a href="#verify_targets">Verify Targets</a></li>
+                <li><a href="#plist_entry">Add entry to plist</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#create_gimbal_app">Create A Gimbal Application</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#add_application">Add Application</a></li>
+                <li><a href="#add_place">Add Place</a></li>
+                <li><a href="#add_communication">Add Communication</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#initialization">Initialize and Configure</a></li>
+            <ul class="nav nav-list">
+				<li><a href="#application_configuration">Application Configuration</a></li>
+                <li><a href="#set_api_key">Set API key</a></li>
+                <li><a href="#is_monitoring">Check Monitoring</a></li>
+                <li><a href="#start_monitoring">Start Monitoring</a></li>
+                <li><a href="#stop_monitoring">Stop Monitoring</a></li>
+                <li><a href="#reset_appID">Reset Application ID</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#place_manager">Place Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#set_placeManager">Initialize</a></li>
+                <li><a href="#placeManager_delegate">Delegate</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#communication_manager">Communication Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#set_communicationManager">Initialize</a></li>
+                <li><a href="#communication_from_local_notification">Communication from Local Notification</a></li>
+                <li><a href="#communication_from_remote_notification">Communication from Remote Notification</a></li>
+                <li><a href="#communicationManager_delegate">Delegate</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#beacon_manager">Beacon Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#set_beaconManager">Initialize</a></li>
+                <li><a href="#beacon_sightings">Sightings</a></li>
+                <li><a href="#beaconManager_delegate">Delegate</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#upgrade_from_v1">Upgrading from Version 1 APIs</a></li>
+            <ul></ul>
+
+            <li class="nav-header"><a href="#beacon_config">Beacon Configuration</a></li>
+            <ul></ul>
+            
+            <li class="nav-header"><a href="#background">Background</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#background_modes">Modes</a></li>
+                <li><a href="#background_behavior">Behavior</a></li>
+            </ul>
+
+        </ul>
+    </div>
+</div>
+
+<div class="span9">
+
+<div class="hero-unit">
+    <h1>iOS Version 2 API Developer Guide</h1>
+    <p>The version 2 API of the iOS SDK offers a number of enhancements and features that simplifies the use of the SDK. This guide will provide examples for each of the available functions in our iOS SDK along with a step by step guide on how to create a gimbal sdk enabled application. </p>
+    <p>If this is your first time working with the Proximity Framework visit the &nbsp;<a href="../../proximity_overview.html" class="btn btn-primary btn-small">Proximity Overview &raquo;</a> </p>
+</div>
+<br/>
+<p><b><span class="label label-important">Places</span></b> Version 2 API introduces the concept of places. A Place can be represented by a single geofence and/or a series of beacons. Thus, when you create a Place in Gimbal Manager you can draw a geofence and/or choose a set of beacons to define the Place.​ Gimbal Analytics in v2 will be generated at place level. As a developer, you would add Communications or other triggers to occur on a Place Entry or Exit.</p>
+
+
+<div id="create_your_developer_account" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Create Your Developer Account</h1>
+
+        <p>Go to the Gimbal Manager and create an account.</p>
+
+        <p><a href="https://manager.gimbal.com/login/users/sign_up" class="btn btn-primary btn-large"
+              target="_blank">Gimbal Manager &raquo;</a></p>
+    </div>
+
+</div>
+<div id="create_app" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Create Your iOS Application</h1>
+
+        <p>The following steps will set up an application in Xcode ready for enabling Gimbal features.</p>
+
+    </div>
+</div>
+
+<div id="confirm_your_environment" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Confirm Your Environment</h2>
+
+        <p>Make sure you are:</p>
+
+        <div class="well">
+            <ul>
+                <li>Using Xcode 4.4 or higher. This example uses Xcode Version 6.1</li>
+                <li>Targeting iOS 5.1.1 or higher. This example uses iOS 8.1</li>
+                <li>Using an iOS device with Bluetooth 4.0. Here is a list of the compatible devices:
+                    <ul>
+                        <li>iPhone 4S or newer</li>
+                        <li>iPad 3 or newer</li>
+                        <li>iPad mini</li>
+                        <li>iPod touch (5th Generation)</li>
+                    </ul>
+                </li>
+                <li>Have a valid <a href='https://developer.apple.com/programs/register/' target='_blank'>Apple
+                    Developer Account</a></li>
+                <li>Have a valid Apple Provisioning Profile</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="create_new_xcode_project" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Create a new Xcode project</h2>
+
+        <p>In Xcode choose <code>File > New > Project</code> and create a new Application</p>
+        <p>Please select the appropriate target from the list in the left column of the project editor</p>
+
+    </div>
+</div>
+
+<div id="add_ios_library" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add this iOS Library to your project</h2>
+
+        <div class="well">
+            <ul>
+                <li>libz.dylib</li>
+            </ul>
+        </div>
+
+        <p>To add iOS Libraries, please select the <code>General</code> tab from the project editor. Then in the <code>Linked Frameworks and Libraries</code>, select <code>+</code> to add add new items</p>
+
+        <p><img src="../../images/linked_fw_libs_ios_beta.png" width="1279" height="400"/></p>
+
+        <p>From the popup <code>Choose frameworks and libraries to add:</code> Select <code>libz.dylib</code> and press <code>Add</code></p>
+
+        <p><img src="../../images/choose_ios_beta_lib.png" width="500" height="600"/></p>
+
+    </div>
+</div>
+
+<div id="add_gimbal_framework" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add this Gimbal Framework to your project</h2>
+
+        <p><b><span class="label label-important">Important</span></b> Right click the Project name and choose the "Add files to ..." option to add the framework.</p>
+        
+        <div class="well">
+            <ul>
+                <li>Gimbal.framework</li>
+            </ul>
+        </div>
+
+        <p><b><span class="label label-info">Note</span></b> You will find this framework in the
+            <code>Frameworks</code> folder inside the Gimbal SDK zip file.</p>
+        <p>Please select the checkbox for <code>Copy items if needed</code>.<p>
+        <p>It is strongly recommended to add the Gimbal Framework using this method to ensure that the Target Membership checkbox is enabled properly.  If an alternate method is used, then the Target Membership of the frameworks must be verified and checked.</p>
+
+
+        <p>The 'Linked Frameworks and Libraries' in your General tab should now look like this:</p>
+
+        <p><img src="../../images/linked_fw_libs_ios_beta_final.png" width="800" height="600"/></p>
+
+    </div>
+</div>
+
+<div id="verify_targets" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+        <h2>Verify Targets</h2>
+
+        <p>Verify that the Gimbal Framework Target Membership checkbox is set. Also verify that your Deployment Target matches the iOS version of your device.</p>
+
+        <img src="../../images/deployment_target_ios_beta.png" width="1279" height="300"/>
+    </div>
+</div>
+
+<div id="plist_entry" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add an entry to your plist</h2>
+        <p>Gimbal SDK for iOS uses both Significant Location Change and Region Monitoring features of the iOS. In order to allow for this, an entry 'NSLocationAlwaysUsageDescription' is required. In the Info.plist file located in the 'Supporting Files' folder, add a new entry with key 'NSLocationAlwaysUsageDescription'. The value should contain a user visible string describing the app’s need for the “always” location permission.</p>
+
+    </div>
+</div>
+
+<p>
+    <br>
+    <span class="label label-warning">Note</span> Across all documentation and SDKs the terms 'Beacon' and 'Transmitter' are interchangeable
+</p>
+
+<!-- Create Application -->
+<div id="create_gimbal_app" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <h1>Create A Gimbal Application</h1>
+    <p>Create Your Gimbal Application in the Gimbal Manager.</p>
+    <p><a href="https://manager.gimbal.com/apps/new" class="btn btn-primary btn-large" target="_blank">Create Gimbal Application &raquo;</a></p>
+</div>
+<div id="add_application" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add Application</h2>
+
+        <p>You will be presented with a form where you will select the iOS platform and enter a bundle ID.</p>
+        <span class="label label-warning">Note</span> This is where you would enter the Xcode application Bundle ID created in the previous section 'Create Your iOS Application'
+
+        <p><img src="../../images/create_gimbal_app_beta.png" width="1279" height="400"/></p>
+
+        <p>Hit the 'Generate' button. Once finished, your app will have a Gimbal API Key.</p>
+
+        <p><img src="../../images/generate_api_key.png" width="1279" height="500"/></p>
+
+        <p><span class="label label-important">Important</span> You will need to set the API Key in your Xcode App</p>
+
+    </div>
+</div>
+
+<div id="add_place" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add Place</h2>
+
+        <p><a href="https://manager.gimbal.com/places/new" class="btn btn-primary btn-large" target="_blank">Create Gimbal Place &raquo;</a></p>
+        <p>You will be presented with a form where you will enter information about your Place.  A Place represents both Geofence and Proximity. For example, a place can be represented by a geofence (circular or polygonal) or a series of beacons.</p>
+        <p>Please enter your Place information. For example, you can enter a Place name and enter your activated beacon(s). You can always update your Place by adding a Geofence or add/delete your beacons.</p>
+        <span class="label label-warning">Note</span> This is where you would enter the Place(s) where you will look for Place Events in your app.
+
+        <p><img src="../../images/create_place.png" width="1279" height="500"/></p>
+
+    </div>
+</div>
+
+<div id="add_communication" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add Communication</h2>
+
+        <p><a href="https://manager.gimbal.com/communicate/new" class="btn btn-primary btn-large" target="_blank">Create Gimbal Communication &raquo;</a></p>
+        <p>You will be presented with a form where you will enter information about your communication.  For example a Communication can be entered for a place and when an app enters the specified place, a notification will be received. Please select 'Save & Publish' to activate your communication.</p>
+
+        <p><img src="../../images/create_comm.png" width="1100" height="400"/></p>
+
+    </div>
+</div>
+
+
+
+
+<!-- Initialization -->
+
+<div id="initialization"></div>
+
+		<div id="application_configuration" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Application Configuration</h1>
+        <hr/>
+        <p>
+        There are a number of application settings that you can configure. 
+        These can can be found by clicking on the Application’s Bundle ID / Package Name within Gimbal Manager.
+		</p>
+		
+		<h3>Place detection with Beacons</h3>
+		<p>
+		The following settings control how place events are triggered. 
+		Note: any of the similar settings you set for a Place take precedence over these app-wide settings.         
+        </p>
+        
+        <h4>Arrival RSSI</h4>
+        <p>
+		The 'Arrival RSSI' setting allows you to specify a specific RSSI (signal strength) to be used in determining if a beacon sighting should be processed as an arrival to a beacon. Signals weaker than 'Arrival RSSI' will be ignored. 
+		<br/>
+		Default = null, such that whenever a beacon is first detected it will cause a sighting and an arrival. 
+		<br/>
+		You may wish to modify this value if you wish to decrease the range of when a  beacon trigger an arrival.
+        </p>
+        
+        <h4>Departure RSSI</h4>
+        <p>
+		The 'Departure RSSI' setting allows you to specify a specific RSSI (signal strength) to be used in determining if a beacon sighting should be processed as a departure. Signals weaker than 'Departure RSSI' will be ignored. 
+		<br/>
+		Note that the Departure RSSI must be at least 10dBm lower than the 'Arrival RSSI'. This is done to avoid excessive bouncing (where arrival and departures events are triggered repeatedly, even when both the mobile device and beacon are standing still).
+		</p>
+		        
+        <h4>Departure interval in seconds</h4>
+        <p>
+		The ‘Departure interval’ is the number of seconds that must elapse where the SDK does not see a beacon RSSI level stronger than the Departure RSSI before processing the departure.
+ 		</p>
+		        
+        <h4>Smoothing Window</h4>
+        <p>
+		The smoothing algorithm processes RSSI signal strengths from sightings to make them less jumpy. The larger the smoothing window the more steady the output RSSI readings will be.
+		</p>
+
+		<h3>SDK Feature Enablement</h3>
+		<p>
+		These settings allow you to turn specific features on/off.
+		</p>
+		        
+        <h4>Geofence Monitoring</h4>
+        <p>
+		Allows you to turn on/off geofencing monitoring. 
+		<br/>
+		This may be desired if your application only uses beacon-based places.
+		</p>
+		        
+        <h4>Beacon Monitoring</h4>
+        <p>
+		Allows you to turn off beacon monitoring. This will affect both beacon-based Place detection and beacon detection. 
+		<br/>
+		This may be useful if your application only uses geofence-based places.
+		</p>
+		
+		<h4>Communicate Delivery</h4>
+		<p>
+		Allows you to turn on/off Communicate delivery.
+		<br/>
+		This may be useful if your application does not use the Communicate feature.
+		</p>
+
+        <h4>Manage Ad ID</h4>
+        <p>
+        Allows you to turn on/off management of advertisement identifier changes on the device.  This functionality is off by default. If you want to enable the advertisement identifier tracking in your iOS application you will need to import the AdSupport Framework.
+        <br/>
+        This may be useful if your application does not have advertising permissions.
+        </p>
+
+        <br/><br/>
+        <h2>Communication Limit Frequency</h2>
+            <hr/>
+        	<p>
+            The configuration for communication limit frequency can be found in the 'Communicate' tab then the 'Triggers' section in Gimbal Manager.
+            </p>
+
+            <p>The following settings sets the limit frequency when triggering communications using place events.</p>
+        	<h4>Limit Frequency</h4>
+        	<p>Setting the 'Limit Frequency' to 'Yes' displays options for setting the frequency interval.</p>
+        	<h4>Only Deliver Once Every</h4>
+        	<p>
+        	The 'Only Deliver Once Every' setting allows you to specify the value in hours, days or weeks for the communication frequency.
+        	Please note, one day specifies a 24hr period. One week specifies a 168hr period.
+        	For example, if the frequency limit is set for one day, then a user who initially receives a communication at 4pm won't get that same communication until after that 24hr period, no matter how often the user comes back in and out of the triggering place.
+        	</p>
+		        
+    </div>
+</div>
+
+
+<div id="set_api_key" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Set API key</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call sets the API key for your Gimbal application. When you register an application on the Developer Portal the API key is generated and supplied to you.</p>
+                <p>This was done in the previous section <a href="#create_gimbal_app">Create Gimbal Application</a>.</p>
+
+                <h2>Sample</h2>
+                    <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [Gimbal setAPIKey:@"PUT_YOUR_GIMBAL_API_KEY_HERE" options:nil];
+                    </pre>
+
+                <span class="label label-warning">Note</span> You can add this code in your AppDelegate implementation (.m) file in the <code>didFinishLaunchingWithOptions:</code> method, inserting your specific API Key
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="is_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Check Monitoring</h1>   
+        <hr/>     
+        <div class="row-fluid">
+            <div class="span12">
+                <h2>Description</h2>
+        
+                <p>The PlaceManager defines the interface for delivering place entry and exits events to your Gimbal SDK enabled
+ application. You use an instance of this class to start or stop place monitoring and to check whether monitoring is enabled.</p>
+                
+                <p>Check if place monitoring has started</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [GMBLPlaceManager isMonitoring];
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="start_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Start Monitoring</h1> 
+        <hr/>       
+        <div class="row-fluid">
+            <div class="span12">
+                <h2>Description</h2>
+                <p>Starts the generation of events based on the users location and proximity to geofences and beacons.</p>
+
+                <h2>Sample</h2>
+                
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [GMBLPlaceManager startMonitoring];
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="stop_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Stop Monitoring</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Stops the generation of events based on the users location and proximity to geofences and beacons.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [GMBLPlaceManager stopMonitoring];
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="reset_appID" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Reset Application Instance Identifier</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call dissociate a device and data (place events) reported by the application running on
+                    that device. The open place sightings gets closed on server. Data on
+                    device also gets cleared due to this API invocation. </p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [Gimbal resetApplicationInstanceIdentifier];
+                </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Place Manager -->
+<div id="place_manager"></div>
+<div id="set_placeManager" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Initialize PlaceManager</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call creates a <code>placeManager</code> object and will trigger the callback to your
+                    delegate of place events. Using this call, you will be notified of
+                    events for places your application is authorized for.</p>
+
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    @property (nonatomic) GMBLPlaceManager *placeManager;
+    ...
+    self.placeManager = [GMBLPlaceManager new];
+    self.placeManager.delegate = self;
+    [GMBLPlaceManager startMonitoring];
+
+                </pre>
+
+                <p><span class="label label-info">Note</span> Be sure to add the <a href="#placeManager_delegate">PlaceManager Delegate</a> protocol to your class.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="placeManager_delegate" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>PlaceManager Delegate</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the callback delegate for place events.</p>
+
+                <h2>Sample GMBLPlaceManagerDelegate Methods</h2>
+
+                <p><span class="label label-info">Note</span> You must add the <code>&lt;GMBLPlaceManagerDelegate&gt;</code>
+                    protocol to your class.</p>
+
+                <p>The following callbacks will be invoked when a place event occurs.</p>
+
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    - (void)placeManager:(GMBLPlaceManager *)manager didBeginVisit:(GMBLVisit *)visit
+    {
+        // this will be invoked when a place is entered
+    }
+
+    - (void)placeManager:(GMBLPlaceManager *)manager didEndVisit:(GMBLVisit *)visit
+    {
+        // this will be invoked when a place is exited
+    }
+                
+                </pre>
+
+                <h4>GMBLVisit Properties</h4>
+                <p>The GMBLVisit class defines a visit to a place. It includes the place, the arrival date and the departure date to the place. If the visit is currently on-going, the departure date will be nil.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>arrivalDate</td>
+                        <td>NSDate</td>
+                        <td>Arrival date for the visit</td>
+                    </tr>
+                    <tr>
+                        <td>departureDate</td>
+                        <td>NSDate</td>
+                        <td>Departure date for the visit</td>
+                    </tr>
+                    <tr>
+                        <td>place</td>
+                        <td>GMBLPlace</td>
+                        <td>Place associated with visit</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>GMBLPlace Properties</h4>
+                <p>The GMBLPlace class defines a place which is represented by a geofence (circular or polygonal) or a series of beacons. A place is defined in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>identifier</td>
+                        <td>NSString</td>
+                        <td>Unique identifier for this place</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>NSString</td>
+                        <td>Name assigned to this place</td>
+                    </tr>
+                    <tr>
+                        <td>attributes</td>
+                        <td>GMBLAttributes</td>
+                        <td>Attributes of this place</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Communications -->
+<div id="communication_manager"></div>
+<div id="set_communicationManager" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Initialize CommunicationManager</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call creates a <code>communicationManager</code> object and will trigger the callback to your
+                    delegate of communications. Using this call, you will be notified of
+                    communications for places your application is authorized for.</p>
+
+                <p><span class="label label-info">Note</span> By default Gimbal Place Events will be presented as UILocalNotifications if the GMBLCommunicationManager is initialized. You can change this behavior by using the <a href="#communicationManager_delegate">GMBLCommunicationManagerDelegate</a></p>
+
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    @property (nonatomic) GMBLCommunicationManager *communicationManager;
+    ...
+    self.communicationManager = [GMBLCommunicationManager new];
+    self.communicationManager.delegate = self;
+    [GMBLCommunicationManager startReceivingCommunications];
+
+                </pre>
+
+                <p><span class="label label-info">Note</span> Be sure to add the <a href="#communicationManager_delegate">CommunicationManager Delegate</a> protocol to your class.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="communication_from_local_notification" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Communication from Local Notification</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call parses a GMBLCommunication from a UILocalNotification. When a Gimbal Place Event generates a UILocalNotification and the user clicks on it you can use this call to parse out the Gimbal Communication.</p>
+
+
+                <h2>Sample</h2>
+            <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    GMBLCommunication *communication = [GMBLCommunicationManager communicationForLocalNotification:notification];
+
+            </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="communication_from_remote_notification" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Communication from Remote Notification</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call parses a GMBLCommunication from a Remote Notification. When a remote notification is generated by the Gimbal Manager and the user clicks on it you can use this call to parse out the Gimbal Communication.</p>
+
+
+                <h2>Sample</h2>
+        <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    GMBLCommunication *communication = [GMBLCommunicationManager communicationForRemoteNotification:userInfo];
+
+        </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="communicationManager_delegate" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>CommunicationManager Delegate</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the callback delegate for communication notifications.</p>
+
+                <h2>Sample GMBLCommunicationManagerDelegate Method</h2>
+
+                <p><span class="label label-info">Note</span> You must add the <code>&lt;GMBLCommunicationManagerDelegate&gt;</code>
+                    protocol to your class.</p>
+
+                <p>The following callback will be invoked when a place communication event occurs. The callback provides the opportunity to filter which communications will be presented as local notifications.</p>
+
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    - (NSArray *)communicationManager:(GMBLCommunicationManager *)manager
+    presentLocalNotificatinsForCommunications:(NSArray *)communications
+                             forVisit:(GMBLVisit *)visit
+    {
+        // This will be invoked when a user has a communication for the place that was entered or exited.
+        // Return an array of communications you would like presented as local notifications.
+    }
+
+                </pre>
+
+                <h4>GMBLVisit Properties</h4>
+                <p>The GMBLVisit class defines a visit to a place. It includes the place, the arrival date and the departure date to the place. If the visit is currently on-going, the departure date will be nil.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>arrivalDate</td>
+                        <td>NSDate</td>
+                        <td>Arrival date for the visit</td>
+                    </tr>
+                    <tr>
+                        <td>departureDate</td>
+                        <td>NSDate</td>
+                        <td>Departure date for the visit</td>
+                    </tr>
+                    <tr>
+                        <td>place</td>
+                        <td>GMBLPlace</td>
+                        <td>Place associated with visit</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <h4>GMBLPlace Properties</h4>
+                <p>The GMBLPlace class defines a place which is represented by a geofence (circular or polygonal) or a series of beacons. A place is defined in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>identifier</td>
+                        <td>NSString</td>
+                        <td>Unique identifier for this place</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>NSString</td>
+                        <td>Name assigned to this place</td>
+                    </tr>
+                    <tr>
+                        <td>attributes</td>
+                        <td>GMBLAttributes</td>
+                        <td>Attributes of this place</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>GMBLCommunication Properties</h4>
+                <p>The GMBLCommunication class defines a communication that was defined on the Gimbal Manager Portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>identifier</td>
+                        <td>NSString</td>
+                        <td>Unique identifier for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>NSString</td>
+                        <td>Title for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>descriptionText</td>
+                        <td>NSString</td>
+                        <td>Description for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>URL</td>
+                        <td>NSString</td>
+                        <td>URL for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>expiry date</td>
+                        <td>NSDate</td>
+                        <td>Expiry date for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>attributes</td>
+                        <td>GMBLAttributes</td>
+                        <td>Attributes of this communication</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Beacon Manager-->
+<div id="beacon_manager"></div>
+<div id="set_beaconManager" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Initialize Beacon Manager</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call creates a <code>beaconManager</code> object and assigns the delegate class.</p>
+
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    @property (nonatomic) GMBLBeaconManager *beaconManager;
+    ...
+    self.beaconManager = [GMBLBeaconManager new];
+    self.beaconManager.delegate = self;
+
+                </pre>
+
+                <p><span class="label label-info">Note</span> Be sure to add the <a href="#beaconManager_delegate">BeaconManager Delegate</a> protocol to your class.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start and Stop Sightings-->
+<div id="beacon_sightings" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Beacon Sightings</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Starts listening to beacon sighting which would generate events based on the users proximity to beacons. You will be notified of
+                    sightings for beacons your application is authorized for.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [self.beaconManager startListening];
+                </pre>
+
+                <p>Stops listening to beacon sightings which would generate events based on the users proximity to beacons.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    [beaconManager stopListening];
+                </pre>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="beaconManager_delegate" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>BeaconManager Delegate</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the callback delegate for beacon manager.</p>
+
+                <h2>Sample GMBLBeaconManagerDelegate Methods</h2>
+
+                <p><span class="label label-info">Note</span> You must add the <code>&lt;GMBLBeaconManagerDelegate&gt;</code>
+                    protocol to your class.</p>
+
+                <p>The following callbacks will be invoked when a beacon sighting occurs.</p>
+
+                <pre class="prettyprint lang-js">
+
+    #import &lt;Gimbal/Gimbal.h&gt;
+    ...
+    - (void)beaconManager:(GMBLBeaconManager *)manager didReceiveBeaconSighting:(GMBLBeaconSighting *)sighting
+    {
+        //This will be invoked when a user sights a beacon
+    }
+                
+                </pre>
+
+                <h4>GMBLBeaconSighting Properties</h4>
+                <p>The GMBLBeaconSighting class defines a beacon sighting.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>RSSI</td>
+                        <td>NSInteger</td>
+                        <td>The rssi value for the beacon sighted</td>
+                    </tr>
+                    <tr>
+                        <td>date</td>
+                        <td>NSDate</td>
+                        <td>The field representing the beacon sighted date</td>
+                    </tr>
+                    <tr>
+                        <td>beacon</td>
+                        <td>GMBLBeacon</td>
+                        <td>The beacon object with beacon attributes</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>GMBLBeacon Properties</h4>
+                <p>The GMBLBeacon class defines a beacon that was defined on the Gimbal Manager Portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>identifier</td>
+                        <td>NSString</td>
+                        <td>A unique string identifier (factory id)</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>NSString</td>
+                        <td>The name for the GMBLBeacon that can be assigned via the Gimbal Manager</td>
+                    </tr>
+                    <tr>
+                        <td>iconURL</td>
+                        <td>NSString</td>
+                        <td>The iconUrl</td>
+                    </tr>
+                    <tr>
+                        <td>batteryLevel</td>
+                        <td>GMBLBatteryLevel</td>
+                        <td>The battery level</td>
+                    </tr>
+                    <tr>
+                        <td>temperature</td>
+                        <td>NSInteger</td>
+                        <td>The ambient temperature surrounding the Beacon in Fahrenheit. The value will be NSIntegerMax if no temperature reading is available for this beacon</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="upgrade_from_v1" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Upgrading from Version 1 APIs</h1>
+
+        <p>We strongly recomend you utilize the Version 2 APIs as we will no longer continue to add new features in the Version 1 APIs.  If you have previously used the Version 1 APIs, switching to Version 2 APIs are easy, all you need to do is to simply start using the Version 2 API.</p>
+
+        <p>Here are some major changes you should take note of:</p>
+
+        <div class="well">
+            <ul>
+                <li>Version 2 API no longer requires the Gimbal API key to be in the UserContext.plist file. Ensure that your application always calls the "setAPIKey:options:" during application startup.</li>
+                <li>Places now not only represent a geofence, but can also now represent one or more beacons. This means a place entry will be generated once you enter the geofence defined on the place, or when the device begins to see beacons associated to that place. To exit the place, the device must no longer be in the defined geofence (if defined), and no longer see any beacons associated to that place.</li>
+                <li>Communicates setup in the Gimbal Manager are now automaticly presented as a NSLocalNotification. If you would like to handle the presentation or filter the communications that are about to be presented, make sure to implement the "communicationManager:presentLocalNotificationsForCommunications:forVisit:" method.</li>
+                <li>In the Version 1 APIs, the unique identifier used was the string represented by the "receiverId" property in the FYXAppInfo object. In Version 2 API, this is now represented by the "applicationInstanceIdentifier" property in the Gimbal.h interface.</li>
+                <li>All analytics related to application running the Version 2 API's are located in the Gimbal Manager, Analytics->Analytics Beta</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div id="beacon_config" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Beacon Configuration</h1>
+
+        <p>For information on default beacon configurations and how to assign and push a configuration, please refer to the link provided</p>
+
+        <p><a href="../../proximity_overview.html#beacon_configuration" class="btn btn-primary btn-large" target="_blank">Beacon Configuration &raquo;</a></p>
+
+    </div>
+</div>
+
+<!-- Beacon Configuration -->
+<div id="background" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Background</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2 id="background_modes">Background Modes</h2>
+
+                <p>To properly receive Gimbal Proximity events in the background your application needs to enable the
+                    following iOS background modes.</p>
+
+                <div class="well">
+                    <ul>
+                        <li>Uses Bluetooth LE accessories  <code>bluetooth-central</code></li>
+                    </ul>
+                </div>
+
+                <h2 id="background_behavior">Background Behavior</h2>
+
+                <p>In the foreground your application should be notified for most Gimbal Proximity Events that originate
+                    from a beacon. In the background this is not the case. In the background the device receives
+                    Bluetooth LE events much less frequently.</p>
+
+                <h3>Expected Time to Arrival</h3>
+
+                <p>The following table shows how long it takes to receive an <code>Arrive</code> event from our VisitManager
+                    based on the testing we've done on devices running different iOS versions.</p>
+                <h4>iOS 7</h4>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Beacon Transmit Rate</th>
+                        <th>Average Time to Arrival</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>100 milliseconds</td>
+                        <td>7 seconds</td>
+                        <td>10 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>645 milliseconds</td>
+                        <td>15 seconds</td>
+                        <td>6 seconds</td>
+                    </tr>
+                </table>
+
+                <h4>iOS 6</h4>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Beacon Transmit Rate</th>
+                        <th>Average Time to Arrival</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>100 milliseconds</td>
+                        <td>20 seconds</td>
+                        <td>11 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>645 milliseconds</td>
+                        <td>85 seconds</td>
+                        <td>59 seconds</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+    <footer class="row-fluid">
+
+         
+
+             <div id="footer" class="span12">
+
+        <p>&copy; 2014 Gimbal, Inc. All rights reserved. Gimbal is a trademark of Gimbal, Inc.,registered in the United States and other countries. QUALCOMM is a trademark of QUALCOMM Incorporated, registered in the United States and other countries.</p>
+        <p>Use of the iBeacon logo means that a Licensed Product has been designed and certified by the manufacturer to meet Apple performance standards. Apple is not responsible for the operation of this device or its compliance with safety and regulatory standards. Please note that the use of this product with iPod, iPhone, or iPad may affect wireless performance.
+        </p>
+        <p>
+        iPad, iPhone, iPod, and iPod touch are trademarks of Apple Inc., registered in the U.S. and other countries. iBeacon is a trademark of Apple Inc.
+        </p>
+
+            </div>
+         
+
+    </footer>
+
+ 
+
+                
+
+<script src="../../js/jquery-1.8.2.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/prettify.js"></script>
+<script type="text/javascript" src="../../js/nav-scrolling.js"></script>
+
+</body>
+</html>

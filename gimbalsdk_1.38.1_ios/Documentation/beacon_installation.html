@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gimbal Beacon Setup Quickstart</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/overrides.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-nav" onload="prettyPrint();">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="https://manager.gimbal.com"><img src="images/gimbal_logo.png"></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                      
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Overview</a></li>
+                            <li><a href="proximity_overview.html">Proximity Overview</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            iOS
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="iosdocs/v2/devguide.html">Developer Guide</a></li>
+                                    <li><a href="ios_v2_api/index.html">API Reference</a></li>
+                            </ul>
+                          </li> 
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="iosdocs/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="iosdocs/v1/devguide.html">Developer Guide</a></li>
+                                    <li><a href="ios/html/index.html">API Reference</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Android
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="android/v2/devguide.html">Developer Guide</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="android/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="android/v1/devguide.html">Developer Guide</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            REST API
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="restapi/rest.html">Manager REST API</a></li>
+                            <li><a href="restapi/restV2.html">Places REST API Beta</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            User Manuals
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manuals/S21.html">Series 21 Proximity Beacon</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+    <div class="row-fluid">
+
+    <div class="span3">
+        <div id="sidenav" class="well sidebar-nav sidebar-nav-fixed" style="overflow-y:auto;height:auto;">
+            <ul class="nav nav-list">
+                <li><a href="#right_beacon">Selecting the Right Beacon</a></li>
+                <li><a href="#beacon_placement">Beacon Placement</a></li>
+                <li><a href="#beacon_installation">Beacon Installation</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="span9">
+        <div class="hero-unit">
+            <h1>Gimbal Beacon Installation Best Practices</h1>
+        </div>
+
+
+        <div id="right_beacon" class="row-fluid">
+            <div style="height: 40px;"></div>
+            <div class="span12">
+                <h2>Selecting the Right Beacon</h2>
+
+                <h4>Foreground vs. Background</h4>
+                <p>If you expect your App to see beacons while it is in the background (e.g. someone's pocket), use series S20.</p>
+
+                <h4>Durability</h4>
+                <p>Series S20 beacons run on 4 AA batteries and are suitable for outdoor use as well as indoor.</p>
+
+                <h4>Battery Life</h4>
+                <p>S20s have a typical battery life of 1 year for both foreground and background app use cases.</p>
+
+                <h4>Cost</h4>
+                <p>Please contact your Gimbal Business Development to discuss pricing.</p>
+
+                <hr/>
+            </div>
+        </div>
+
+        <div id="beacon_placement" class="row-fluid">
+            <div style="height: 40px;"></div>
+            <div class="span12">
+                <h2>Beacon Placement</h2>
+
+                <h4>Physical Security</h4>
+                <p>It is preferable to install beacons out of normal human reach (~ 10 - 12ft high). For added security with the S20s, use the 'set screw' to help prevent tampering.</p>
+
+                <h4>Signal Propagation</h4>
+                <p>Place the beacon where it will have good visibility to the end user’s phone.  A clear, consistent, unobstructed signal is the best way to achieve consistent app behavior.</p>
+
+                <h4>Battery Replacement</h4>
+                <p>For more permanent installations, consider how easy it will be to replace batteries later. Can it be easily reached from a ladder?  Can the S20s be opened while mounted? If the ‘set screw’ has been used, is there room for a screwdriver in order to open it?</p>
+
+                <h4>Presence vs. Running</h4>
+                <p>Consider what use cases your deployment needs to support. If your app is trying to determine whether someone is present or not, focus on placing beacons to prevent leakage outside of that area. If your app needs to know how close they are, assess the specific amount of area you’re trying to cover and increase the density/number of beacons you’re deploying until your use cases work consistently.</p>
+
+                <hr/>
+            </div>
+        </div>
+
+        <div id="beacon_installation" class="row-fluid">
+            <div style="height: 40px;"></div>
+            <div class="span12">
+                <h2>Beacon Installation</h2>
+
+                <h4>Physical Tools</h4>
+                <p>A long pole can be useful for testing (tape a beacon to the end of the pole to simulate placement during testing).  We also recommend having some Gaff tape handy (no residue, made of cloth and doesn’t impede the beacon’s antenna).  In many cases, a ladder is also required for installations depending on where you’re placing beacons.  Finally, if you’re using the ‘set screw’ on the S20s, make sure you have a Torx T8 screwdriver handy.</p>
+
+                <h4>Software Tools</h4>
+                <p>An iPhone 5 or above is recommended for testing and should be running the Gimbal Beacon Manager (GBM) application (available for free from the app store).  GBM can be used to configure beacons as necessary as well as to sight beacons during installation and testing.</p>
+
+                <h4>Mounting</h4>
+                <p>In most cases, the double-sided tape included with each beacon is sufficient but consider using the ¼”-20 mount or drywall screws supported by the S20 beacon, as applicable.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    <footer class="row-fluid">
+
+         
+
+             <div id="footer" class="span12">
+
+        <p>&copy; 2014 Gimbal, Inc. All rights reserved. Gimbal is a trademark of Gimbal, Inc.,registered in the United States and other countries. QUALCOMM is a trademark of QUALCOMM Incorporated, registered in the United States and other countries.</p>
+        <p>Use of the iBeacon logo means that a Licensed Product has been designed and certified by the manufacturer to meet Apple performance standards. Apple is not responsible for the operation of this device or its compliance with safety and regulatory standards. Please note that the use of this product with iPod, iPhone, or iPad may affect wireless performance.
+        </p>
+        <p>
+        iPad, iPhone, iPod, and iPod touch are trademarks of Apple Inc., registered in the U.S. and other countries. iBeacon is a trademark of Apple Inc.
+        </p>
+
+            </div>
+         
+
+    </footer>
+
+ 
+
+                
+
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/prettify.js"></script>
+<script type="text/javascript" src="js/nav-scrolling.js"></script>
+
+</body>
+</html>

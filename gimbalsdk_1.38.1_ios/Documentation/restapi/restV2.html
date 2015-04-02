@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gimbal V2 REST API</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/overrides.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../images/favicon.ico">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-nav" onload="prettyPrint();">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="https://manager.gimbal.com"><img src="../images/gimbal_logo.png"></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                      
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.html">Overview</a></li>
+                            <li><a href="../proximity_overview.html">Proximity Overview</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            iOS
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../iosdocs/v2/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../ios_v2_api/index.html">API Reference</a></li>
+                            </ul>
+                          </li> 
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../iosdocs/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../iosdocs/v1/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../ios/html/index.html">API Reference</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Android
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../android/v2/devguide.html">Developer Guide</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="../android/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../android/v1/devguide.html">Developer Guide</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            REST API
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../restapi/rest.html">Manager REST API</a></li>
+                            <li><a href="../restapi/restV2.html">Places REST API Beta</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            User Manuals
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../manuals/S21.html">Series 21 Proximity Beacon</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+    <div id="rest-api" class="row-fluid">
+<div class="span3">
+    <div id="sidenav" class="well sidebar-nav sidebar-nav-fixed" style="overflow-y:auto;height:auto;">
+        <ul class="nav nav-list">
+            <li><a href="#authorization">Authorization</a></li>
+            <li><a href="#content_type">Content Type</a></li>
+            <li><a href="#resource_types">Resource Types</a></li>
+            <li><a href="#response_status">Response Status</a></li>
+            <li class="nav-header">Places</li>
+            <li><a href="#places_getall">GET All</a></li>
+            <li><a href="#places_get">GET</a></li>
+            <li><a href="#places_post">POST</a></li>
+            <li><a href="#places_put">PUT</a></li>
+            <li><a href="#places_delete">DELETE</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="span9">
+<div class="hero-unit">
+    <h1>Places REST API</h1>
+
+    <p>This document describes a Restful server API for interacting with the Gimbal V2 service.</p>
+
+            <span>
+                API Endpoint
+                <a href="https://manager.gimbal.com/api/v2/places" class="external-link" rel="nofollow">https://manager.gimbal.com/api/v2/places</a>
+            </span>
+    
+</div>
+
+<!-- Authorization -->
+<div id="authorization" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Authorization</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>The Gimbal APIs require your organization's server API key in the <code>AUTHORIZATION</code> HTTP header. You can find your organization's server API Key under <a href="https://manager.gimbal.com/organizations" target="_blank">Organizations</a>.</p>
+                <pre class="prettyprint lang-js">AUTHORIZATION: Token token=my_organization_server_api_key</pre>
+
+                <p><span class="label label-important">Important</span> Some Proximity APIs require OAuth access tokens.
+                    See below for more information about OAuth.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Content Type -->
+<div id="content_type" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Content Type</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>The Gimbal API's support JSON content type and should be specified in the <code>Content-Type</code>
+                    HTTP header as <code>"application/json"</code></p>
+                <pre class="prettyprint lang-js">Content-Type: application/json</pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="resource_types" class="row-fluid api_row">
+    <div style="height:  40px;"></div>
+        <div class="span12">
+
+            <h1>Resource Types</h1>
+            <hr/>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <p>The following is the list of resource types used by the API.</p>
+                    <h3>Place</h3>
+                    <table class='table table-striped table-bordered table-condensed'>
+                        <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>String</td>
+                        <td>Unique identifier for a Place</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>String</td>
+                        <td>Name of the Place</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3>Place Detail</h3>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Optional</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>String</td>
+                        <td>Unique identifier for a Place</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>String</td>
+                        <td>Name of the Place</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>attributes</td>
+                        <td>Object</td>
+                        <td>Series of key and value fields</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>geofence</td>
+                        <td>Object</td>
+                        <td>Geofence object related to this Place</td>
+                        <td>true</td>
+                    </tr>   
+                    <tr>
+                        <td>beacons</td>
+                        <td>Array</td>
+                        <td>Array of Beacon objects related to this place</td>
+                        <td>true</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3>Geofence</h3>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Optional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>shape</td>
+                            <td>String</td>
+                            <td>CIRCLE or POLYGON</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>radius</td>
+                            <td>Number</td>
+                            <td>The radius in meters of a Circle geofence</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>center</td>
+                            <td>Point</td>
+                            <td>A Point object defining the center of a Circle geofence</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>points</td>
+                            <td>Array</td>
+                            <td>Array of Points objects defining Polygonal geofences</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>source</td>
+                            <td>String</td>
+                            <td>"1" for public geofence, null otherwise</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>sourceId</td>
+                            <td>String</td>
+                            <td>public geofence id</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>sourceVersion</td>
+                            <td>String</td>
+                            <td>Version for public geofence source</td>
+                            <td>true</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Beacon</h3>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Optional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>String</td>
+                            <td>Unique identifier for the beacon</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>String</td>
+                            <td>Name of the beacon</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Point</h3>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                            <th>Optional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>latitude</td>
+                            <td>Number</td>
+                            <td>Latitude of this Point</td>
+                            <td>false</td>
+                        </tr>
+                        <tr>
+                            <td>Longitude</td>
+                            <td>Number</td>
+                            <td>Longitude of this Point</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+      </div>  
+    </div>
+</div>
+<hr/>
+
+<!-- Response Status -->
+<div id="response_status" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Response Status</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>The following is the generic list of response status codes used by the API.</p>
+
+                <h3>Response Status</h3>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>HTTP Response Status</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>200</td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td>401</td>
+                        <td>Unauthorized</td>
+                    </tr>
+                    <tr>
+                        <td>422</td>
+                        <td>Unprocessable Entity</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <td>Resource Not Found</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>Unexpected Error</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GET All Places -->
+<div id="places_getall" class="row-fluid api_row">
+
+    <div class="span12">
+        <h1>GET All Places</h1>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Get all places for a specific organization.</p>
+
+           
+            <h3>HTTP Method</h3>
+                <code>GET</code>
+
+                <h3>URL</h3>
+                <code>https://manager.gimbal.com/api/v2/places</code>
+        <h2>Sample Request</h2>
+                <pre class="prettyprint">
+curl -H "AUTHORIZATION: Token token=MY-GIMBAL-SERVER-API-KEY" https://manager.gimbal.com/api/v2/places
+                </pre>
+        <h2>Sample Response</h2>
+        <p>An array of Place Objects</p>
+                <pre class="prettyprint lang-js">
+[
+    {
+        "id": "MY-PLACE-ID-1",
+        "name": "My First Place"
+    },
+    {
+        "id": "MY-PLACE-ID-2",
+        "name": "My Second Place"
+    }
+]
+                </pre>
+
+         </div>
+    </div>
+    <hr/>
+</div>
+</div>
+<!-- GET Place -->
+<div id="places_get" class="row-fluid api_row">
+    <div class="span12">
+        <h1>GET Place</h1>
+        <div class="row-fluid">
+            <h2>Description</h2>
+            <p>Get Place Detail object for a specific place</p>
+            <h3>HTTP Method</h3>
+            <code>GET</code>
+            <h3>URL</h3>
+            <code>https://manager.gimbal.com/api/v2/places/MY-PLACE-ID</code>
+            <h2>Sample Request</h2>
+            <pre class="prettyprint">
+curl -H "AUTHORIZATION: Token token=MY-GIMBAL-SERVER-API-KEY" https://manager.gimbal.com/api/v2/places/MY-PLACE-ID
+            </pre>
+            <h2>Sample Response</h2>
+            <p>Place Detail Object</p>
+            <pre class="prettyprint lang-js">
+{
+    "id": "MY-PLACE-ID",
+    "name": "My Place",
+    "geofence": {
+        "shape": "POLYGON",
+        "radius": null,
+        "center": null,
+        "points": [
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            }
+        ],
+        "source": null,
+        "sourceId": null,
+        "sourceVersion": null
+    },
+    "beacons": [
+        {
+            "id": "MY-BEACON-ID",
+            "name": "My Beacon"
+        }
+    ],
+    "attributes": {
+        "key1": "value1",
+        "key2": "value2"
+    }
+}
+            </pre>
+        </div>
+        <hr/>
+    </div>
+</div>
+<!-- POST Place -->
+<div id="places_post" class="row-fluid api_row">
+    <div class="span12">
+        <h1>POST Place</h1>
+        <div class="span12">
+            <div class="row-fluid">
+                <h2>Description</h2>
+                <p>This call allows you to create a new Place for your organization.</p>
+            </div>
+            <h3>HTTP Method</h3>
+            <code>POST</code>
+            <h3>URL</h3>
+            <code>https://manager.gimbal.com/api/v2/places/MY-PLACE-ID</code>
+            <h2>Sample Request</h2>
+            <pre class="prettyprint">
+curl -X POST -H "AUTHORIZATION: Token token=MY-GIMBAL-SERVER-API-KEY" -H "Content-Type: application/json" -d '{ "name": "My Place", "geofence": { "shape": "POLYGON", "radius": null, "center": null, "points": [ { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 } ], "source": null, "sourceId": null, "sourceVersion": null }, "beacons": [ { "id": "MY-BEACON-ID", "name": "My Beacon" } ], "attributes": { "key1": "value1", "key2": "value2" } }' https://manager.gimbal.com/api/v2/places
+            </pre>
+            <h3>Note</h3>
+            <p>The beacon(s) must already be activated and the ID is used to create the relationship</p>
+            <h2>Sample Response</h2>
+            <pre class="prettyprint lang-js">
+{
+    "id": "MY-PLACE-ID",
+    "name": "My Place",
+    "geofence": {
+        "shape": "POLYGON",
+        "radius": null,
+        "center": null,
+        "points": [
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            }
+        ],
+        "source": null,
+        "sourceId": null,
+        "sourceVersion": null
+    },
+    "beacons": [
+        {
+            "id": "MY-BEACON-ID",
+            "name": "My Beacon"
+        }
+    ],
+    "attributes": {
+        "key1": "value1",
+        "key2": "value2"
+    }
+}
+            </pre>
+            <hr/>
+        </div>
+   </div>
+</div>
+<!-- PUT Place -->
+<div id="places_put" class="row-fluid api_row">
+    <div class="span12">
+        <div class="row-fluid">
+            <h1>PUT Place</h1>
+            <p>PUT request will replace all information with input submitted.</p>
+            <h3>HTTP Method</h3>
+            <code>PUT</code>
+            <h3>URL</h3>
+            <code>https://manager.gimbal.com/api/v2/places/MY-PLACE-ID</code>
+            <h2>Sample Request</h2>
+            <pre class="prettyprint">
+curl -X PUT -H "AUTHORIZATION: Token token=MY-GIMBAL-SERVER-API-KEY" -H "Content-Type: application/json" -d '{ "name": "My Place", "geofence": { "shape": "POLYGON", "radius": null, "center": null, "points": [ { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 }, { "latitude": 32.9, "longitude": -117.2 } ], "source": null, "sourceId": null, "sourceVersion": null }, "beacons": [ { "id": "MY-BEACON-ID", "name": "My Beacon" } ], "attributes": { "key1": "value1", "key2": "value2" } }' https://manager.gimbal.com/api/v2/places/MY-PLACE-ID
+            </pre>
+            <h2>Sample Response</h2>
+            <pre class="prettyprint lang-js">
+{
+    "id": "MY-PLACE-ID",
+    "name": "My Place",
+    "geofence": {
+        "shape": "POLYGON",
+        "radius": null,
+        "center": null,
+        "points": [
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            },
+            {
+                "latitude": 32.9,
+                "longitude": -117.2
+            }
+        ],
+        "source": null,
+        "sourceId": null,
+        "sourceVersion": null
+    },
+    "beacons": [
+        {
+            "id": "MY-BEACON-ID",
+            "name": "My Beacon"
+        }
+    ],
+    "attributes": {
+        "key1": "value1",
+        "key2": "value2"
+    }
+}
+            </pre>
+       
+        <h3>Notes</h3>
+            <ul>
+                <li>All existing attributes are deleted and replaced with input</li>
+                <li>All beacons are deleted and replaced with input</li>
+                <li>No existing beacons are affected, just the relationship to the place</li>
+                <li>Existing geofence is deleted and replaced with input</li>
+                <li>When updating a place with a geofence and beacon(s) using PUT, leaving either the geofence or beacon(s) blank will remove the geofence or beacon(s) from the place. 
+            </ul>
+        <hr/>
+    </div>
+    </div>
+</div>
+<div id="places_delete" class="row-fluid api_row">
+
+    <div class="span12">
+        <h1>DELETE Place</h1>
+        <p>Delete place with specific ID</p>
+                <h3>HTTP Method</h3>
+                <code>DELETE</code>
+                <h3>URL</h3>
+                <code>https://manager.gimbal.com/api/v2/places/MY-PLACE-ID</code>
+        <h2>Sample Request</h2>
+                <pre class="prettyprint">
+curl -X DELETE -H "AUTHORIZATION: Token token=MY-GIMBAL-SERVER-API-KEY" https://manager.gimbal.com/api/v2/places/MY-PLACE-ID
+                </pre>
+        <h2>Sample Response</h2>
+                <pre class="prettyprint lang-js">
+{"message":"Success"}
+                </pre>
+    </div>
+
+</div>
+</div>
+</div>
+
+
+
+    <footer class="row-fluid">
+
+         
+
+             <div id="footer" class="span12">
+
+        <p>&copy; 2014 Gimbal, Inc. All rights reserved. Gimbal is a trademark of Gimbal, Inc.,registered in the United States and other countries. QUALCOMM is a trademark of QUALCOMM Incorporated, registered in the United States and other countries.</p>
+        <p>Use of the iBeacon logo means that a Licensed Product has been designed and certified by the manufacturer to meet Apple performance standards. Apple is not responsible for the operation of this device or its compliance with safety and regulatory standards. Please note that the use of this product with iPod, iPhone, or iPad may affect wireless performance.
+        </p>
+        <p>
+        iPad, iPhone, iPod, and iPod touch are trademarks of Apple Inc., registered in the U.S. and other countries. iBeacon is a trademark of Apple Inc.
+        </p>
+
+            </div>
+         
+
+    </footer>
+
+ 
+
+                
+
+<script src="../js/jquery-1.8.2.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/prettify.js"></script>
+<script type="text/javascript" src="../js/nav-scrolling.js"></script>
+
+</body>
+</html>

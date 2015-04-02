@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gimbal Beacon with iBeacon Technology Quickstart</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/overrides.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-nav" onload="prettyPrint();">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="https://manager.gimbal.com"><img src="images/gimbal_logo.png"></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                      
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Overview</a></li>
+                            <li><a href="proximity_overview.html">Proximity Overview</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            iOS
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="iosdocs/v2/devguide.html">Developer Guide</a></li>
+                                    <li><a href="ios_v2_api/index.html">API Reference</a></li>
+                            </ul>
+                          </li> 
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="iosdocs/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="iosdocs/v1/devguide.html">Developer Guide</a></li>
+                                    <li><a href="ios/html/index.html">API Reference</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Android
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="android/v2/devguide.html">Developer Guide</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="android/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="android/v1/devguide.html">Developer Guide</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            REST API
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="restapi/rest.html">Manager REST API</a></li>
+                            <li><a href="restapi/restV2.html">Places REST API Beta</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            User Manuals
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manuals/S21.html">Series 21 Proximity Beacon</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+    <div class="row-fluid">
+
+    <div class="span3">
+        <div id="sidenav" class="well sidebar-nav sidebar-nav-fixed" style="overflow-y:auto;height:auto;">
+            <ul class="nav nav-list">
+                <li><a href="#create_ibeacon_configuration">Create Your Configuration</a></li>
+                <li><a href="#apply_ibeacon_configuration">Apply Configuration To Beacon</a></li>
+                <li><a href="#configure_beacon">Push Configuration to Beacon</a></li>
+                <li><a href="#ibeacon_visit_manager">Setup Visit Manager</a></li>
+                <li><a href="#ibeacon_visit_delegate">Implement Delegate</a></li>
+                <li><a href="#ibeacon_known_issue">Known Issue</a></li>
+                <li><a href="#ibeacon_success">Success</a></li>
+                <li><a href="#learn_more">Learn More</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="span9">
+
+        <div class="hero-unit">
+
+            <h1>Quick Start with iBeacon&#8482; </h1>
+
+            <p>Get Gimbal beacons with iBeacon technology up and running in your iOS App.</p>
+
+            <p>This guide builds upon the iOS Version 1 Quick Start guide.  It is highly recommended to complete the Proximity Quick Start guide first before continuing.</p>
+            <p>&nbsp;<a href="iosdocs/v1/quickstart.html" class="btn btn-primary btn-small">iOS Quick Start &raquo;</a></p>
+        </div>
+
+
+        <div id="create_ibeacon_configuration" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Create Configuration</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>All Gimbal beacons with iBeacon technology will be managed by the <a href="https://manager.gimbal.com">Gimbal Manager</a>.  To create a configuration, login to the manager and navigate to <a href="https://manager.gimbal.com/beacon_configs/new">Proximity > Beacons > Manage Configurations > New Configuration</a>.  To indicate that you want to create a Gimbal beacon with iBeacon technology, change the configuration Beacon Type  to 'iBeacon' and fill in required fields to produce a form similar to this: </p>
+
+                <p>
+                 <img src="images/ibeacon_configuration.png"/>
+                </p>
+
+                <p><span class="label label-warning">Warning</span>  Changing any values under the Advanced Options may prevent your beacon from being sighted by an iOS device.  Only change the values if you fully understand the side effects on the behavior of the beacon.</p>
+
+                <hr/>
+                <p> Click 'Create Configuration' to complete the process and you should see the configuration in your configuration list.</p>
+
+                <p>
+                 <img src="images/my_configurations.png"/>
+                </p>
+                                
+            </div>
+        </div>
+
+    </div>
+</div>
+        <div id="apply_ibeacon_configuration" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Apply Configuration</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>Once you have created a configuration you can apply the configuration to a beacon.  Applying a configuration indicates to the server that you want to push that configuration to the specified beacon when possible.  To do so navigate to <a href="https://manager.gimbal.com/transmitters">Proximity > Beacons</a> and edit a beacon.</p>
+
+                <p>
+                 <img src="images/edit_beacon_configuration.png"/>
+                </p>
+                                
+            </div>
+        </div>
+
+    </div>
+</div>                
+
+        <div id="configure_beacon" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Push Configuration To Beacon</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>In order to push configurations to a beacon you must use the Gimbal Beacon Manager application that can be found in the App Store&#8480; <a href="https://itunes.apple.com/us/app/gimbal-beacon-manager/id785688563?mt=8">here</a>.  Open the Gimbal Beacon Manager application and log in using your Gimbal Manager credentials.</p>
+
+                <p>
+                    <img src="images/gbm_login.png"/>
+                </p>
+
+                <p>
+                    Once logged in hit the settings button to reveal the settings menu.  Click on the "Configure" menu option.
+                <p>
+
+                <p>
+                    <img src="images/gbm_configure_settings.png"/>
+                </p>
+
+                <p>
+                    Follow the directions on the screen and remove all batteries from your Gimbal Series 20 Beacon and then re-insert the batteries.  This places the beacon in a configurable mode and the application will be able to push your configuration.  When connected to the beacon you should see something like the following.
+                </p>
+
+                <p>
+                    <img src="images/gbm_beacon_connected.png">
+                </p>
+
+                <p>
+                    Notice that the configuration on the beacon does not match the configuration indicated from the Server.  Push the update button to apply your configuration.
+                </p>
+
+                <p>
+                    <img src="images/gbm_beacon_updated.png"/>
+                </p>
+                                
+            </div>
+        </div>
+
+    </div>
+</div> 
+        <div id="ibeacon_visit_manager" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Setup Visit Manager</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>Just like you previously <a href="ios_proximity_quickstart.html#initialize_sighting_manager">initialized the FYXVisitManager</a> with a delegate for Gimbal beacons, we will need to set a FYXiBeaconVisitDelegate as well.  Your code should now look like this.</p>
+
+                <pre class="prettyprint lang-js">
+
+    #import &lt;FYX/FYXVisitManager.h&gt;
+    ...
+    @property (nonatomic) FYXVisitManager *visitManager;
+    ...
+    self.visitManager = [FYXVisitManager new];
+    self.visitManager.delegate = self;
+    self.visitManager.iBeaconDelegate = self;
+    [self.visitManager start];
+            </pre>
+                                
+            </div>
+        </div>
+
+    </div>
+</div>                
+
+        <div id="ibeacon_visit_delegate" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Implement FYXiBeaconVisitDelegate</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+            <p>The FYXiBeaconVisitDelegate has a very similar interface to the FYXVisitDelegate making it easy to switch between beacon types.  To receive sightings you must add the <code>&lt;FYXiBeaconVisitDelegate&gt;</code> protocol to your class and set the delegate on your <code>FYXVisitManager</code> object.  Implement the delegate as below:</p>
+
+            <pre class="prettyprint lang-js">
+
+    #import &lt;FYX/FYXVisitManager.h&gt;
+    #import &lt;FYX/FYXiBeacon.h&gt;
+    ...
+    - (void)didArriveIBeacon:(FYXiBeaconVisit *)visit;
+    {
+        // this will be invoked when a managed Gimbal beacon is sighted for the first time
+        NSLog(@"I arrived within the proximity of a Gimbal beacon!!! Proximity UUID:%@ Major:%@ Minor:%@", visit.iBeacon.uuid, visit.iBeacon.major, visit.iBeacon.minor);
+    }
+    - (void)receivedIBeaconSighting:(FYXiBeaconVisit *)visit updateTime:(NSDate *)updateTime RSSI:(NSNumber *)RSSI;
+    {
+        // this will be invoked when a managed Gimbal beacon is sighted during an on-going visit
+        NSLog(@"I received a sighting!!! Proximity UUID:%@ Major:%@ Minor:%@", visit.iBeacon.uuid, visit.iBeacon.major, visit.iBeacon.minor);
+    }
+    - (void)didDepartIBeacon:(FYXiBeaconVisit *)visit;
+    {
+        // this will be invoked when a managed Gimbal beacon has not been sighted for some time
+        NSLog(@"I left the proximity of a Gimbal beacon!!!! Proximity UUID:%@ Major:%@ Minor:%@", visit.iBeacon.uuid, visit.iBeacon.major, visit.iBeacon.minor);
+        NSLog(@"I was around the beacon for %f seconds", visit.dwellTime);
+    }
+            </pre>
+
+            </div>
+        </div>
+
+    </div>
+</div>                
+
+        <div id="ibeacon_known_issue" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Known Issues</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+            <p> There is a known issue with the current release of the SDK in which an application only listens for the Gimbal Beacons with iBeacon technology which are in your Gimbal Manager Portal at the time of installation (first launch).  Any configurations for beacons with iBeacon technology created after first launch will not immediately be sighted by the SDK.  For testing purposes it is best to uninstall and reinstall the application after creating new configurations for Gimbal beacons with iBeacon technology.</p>
+
+            </div>
+        </div>
+
+    </div>
+</div>        
+        <div id="ibeacon_success" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Success</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+            <p> You have now successfully created a Gimbal beacon with iBeacon technology and written an application that can detect your beacon.  When installing the application you should see the following.</p>
+
+            <pre class="prettyprint lang-js">
+2014-01-21 17:15:43.958 MyProduct[1137:60b] I arrived within the proximity of a Gimbal beacon!!! Proximity UUID:11111111-2222-3333-4444-555555555555 Major:1 Minor:1
+2014-01-21 17:15:44.957 MyProduct[1137:60b] I received a sighting!!! Proximity UUID:11111111-2222-3333-4444-555555555555 Major:1 Minor:1
+2014-01-21 17:16:06.903 MyProduct[1137:4703] I left the proximity of a Gimbal beacon!!!! Proximity UUID:11111111-2222-3333-4444-555555555555 Major:1 Minor:1
+2014-01-21 17:16:06.905 MyProduct[1137:4703] I was around the beacon for 11.000249 seconds
+            </pre>
+
+            </div>
+        </div>
+
+    </div>
+</div>    
+
+       <div id="learn_more" class="row-fluid">
+            <div style="height: 40px;"></div>
+            <div class="span12">
+
+                <h1>Learn More</h1>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <p>For additional details on how to leverage the SDK functionality, refer to the sample
+                            applications and documentation included in the zip file provided.</p>
+
+
+                        <p><a href="iosdocs/v1/devguide.html" class="btn btn-primary btn-large" target="_blank">Gimbal
+                            iOS Developer
+                            Guide &raquo;</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <footer class="row-fluid">
+
+         
+
+             <div id="footer" class="span12">
+
+        <p>&copy; 2014 Gimbal, Inc. All rights reserved. Gimbal is a trademark of Gimbal, Inc.,registered in the United States and other countries. QUALCOMM is a trademark of QUALCOMM Incorporated, registered in the United States and other countries.</p>
+        <p>Use of the iBeacon logo means that a Licensed Product has been designed and certified by the manufacturer to meet Apple performance standards. Apple is not responsible for the operation of this device or its compliance with safety and regulatory standards. Please note that the use of this product with iPod, iPhone, or iPad may affect wireless performance.
+        </p>
+        <p>
+        iPad, iPhone, iPod, and iPod touch are trademarks of Apple Inc., registered in the U.S. and other countries. iBeacon is a trademark of Apple Inc.
+        </p>
+
+            </div>
+         
+
+    </footer>
+
+ 
+
+                
+
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/prettify.js"></script>
+<script type="text/javascript" src="js/nav-scrolling.js"></script>
+
+</body>
+</html>

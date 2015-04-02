@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gimbal Android Version 2 API Developer Guide</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/overrides.css" rel="stylesheet">
+    <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-nav" onload="prettyPrint();">
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="https://manager.gimbal.com"><img src="../../images/gimbal_logo.png"></a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                      
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../index.html">Overview</a></li>
+                            <li><a href="../../proximity_overview.html">Proximity Overview</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            iOS
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../../iosdocs/v2/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../../ios_v2_api/index.html">API Reference</a></li>
+                            </ul>
+                          </li> 
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../../iosdocs/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../../iosdocs/v1/devguide.html">Developer Guide</a></li>
+                                    <li><a href="../../ios/html/index.html">API Reference</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Android
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-submenu"><a href="#">Version 2 API</a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="../../android/v2/devguide.html">Developer Guide</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-submenu"><a href="#">Version 1 API</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="../../android/v1/quickstart.html">Quickstart</a></li>
+                                    <li><a href="../../android/v1/devguide.html">Developer Guide</a></li>
+                                </ul>
+                          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            REST API
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../restapi/rest.html">Manager REST API</a></li>
+                            <li><a href="../../restapi/restV2.html">Places REST API Beta</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            User Manuals
+                            <b class="caret black-caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../manuals/S21.html">Series 21 Proximity Beacon</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+    <div class="row-fluid">
+
+<div class="span3">
+    <div id="sidenav" class="well sidebar-nav sidebar-nav-fixed" style="overflow-y:auto;height:auto;">
+        <ul class="nav nav-list">
+
+            <li class="nav-header"><a href="#create_app">Quickstart</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#create_your_developer_account">Create Gimbal Developer Account</a></li>
+                <li><a href="#confirm_your_environment">Confirm Your Environment</a></li>
+                <li><a href="#create_new_eclipse_project">Create a New Project</a></li>
+                <li><a href="#add_jars">Add Dependencies</a></li>
+                <li><a href="#create_gimbal_app">Create Gimbal Application</a></li>
+                <li><a href="#set_api_key_qs">Set API Key</a></li>
+                <li><a href="#set_place">Set PlaceManager</a></li>
+                <li><a href="#set_comm">Set CommunicationManager</a></li>
+                <li><a href="#set_beacon">Set BeaconManager</a></li>
+                <li><a href="#start_mon_qs">Start Monitoring</a></li>
+                <li><a href="#update_manifest">Update Manifest</a></li>
+                <li><a href="#add_place">Add New Place</a></li>
+                <li><a href="#add_comm">Add New Communication</a></li>
+            </ul>
+            <li class="nav-header"><a href="#application_configuration">Application Configuration</a></li>
+            <li class="nav-header"><a href="#api_guide">API Guide</a></li>
+            <li class="nav-header"><a href="#set_api_key">Initialize </a></li>
+            <ul class="nav nav-list">
+                <li><a href="#set_api_key">Set API key</a></li>
+                <li><a href="#reset_appID">Reset Application ID</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#push">Set Up Push</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#set_gcm">Set Up Google Cloud Messaging</a></li>
+                <li><a href="#update_manifest_push">Update Manifest for Push</a></li>
+                <li><a href="#register_push">Register For Push</a></li>
+                <li><a href="#setup_push_comm">Add Push Communication On Gimbal</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#place_manager">Place Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#is_monitoring">Check Monitoring</a></li>
+                <li><a href="#start_monitoring">Start Monitoring</a></li>
+                <li><a href="#stop_monitoring">Stop Monitoring</a></li>
+                <li><a href="#placeEventListener">Place Event Listener</a></li>
+                <li><a href="#add_placeEventListener">Add Place Event Listener</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#communication_manager">Communication Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#communicationListener">Communication Listener</a></li>
+                <li><a href="#add_communicationListener">Add Communication Listener</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#beacon_manager">Beacon Manager</a></li>
+            <ul class="nav nav-list">
+                <li><a href="#start_sighting">Start Listening</a></li>
+                <li><a href="#stop_sighting">Stop Listening</a></li>
+                <li><a href="#beaconEventListener">Beacon Event Listener</a></li>
+                <li><a href="#add_beaconEventListener">Add Beacon Event Listener</a></li>
+            </ul>
+
+            <li class="nav-header"><a href="#beacon_config">Beacon Configuration</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="span9">
+
+<div class="hero-unit">
+    <h1>Android Version 2 API Developer Guide</h1>
+    <p>The version 2 API offers a number of enhancements and features that simplifies the use of the SDK. This documentation provides a quickstart example on how to create a gimbal sdk enabled application along with a guide for the available API.</p>
+</div>
+
+<br/>
+<p><b><span class="label label-important">Places</span></b> v2 introduces the concept of places. A Place can be represented by a single geofence and/or a series of beacons. Thus, when you create a Place in Gimbal Manager you can draw a geofence and/or choose a set of beacons to define the Place.​ As a developer, you would add Communications or other triggers to occur on a Place Entry or Exit.</p>
+
+<div id="create_your_developer_account" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Create Your Developer Account</h1>
+
+        <p>Go to the Gimbal Manager and create an account.</p>
+
+        <p><a href="https://manager.gimbal.com/login/users/sign_up" class="btn btn-primary btn-large"
+              target="_blank">Gimbal Manager &raquo;</a></p>
+    </div>
+
+</div>
+<div id="create_app" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Create Your Android Application</h1>
+
+        <p>The following steps will set up an application in Eclipse using commonly used Gimbal SDK features.</p>
+
+    </div>
+</div>
+
+<div id="confirm_your_environment" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Confirm Your Environment</h2>
+
+        <div class="well">
+            <ul>
+                <li>Have a device with Android 4.4.3 or higher if using proximity(beacon) features. 
+                	<ul>
+	                	<span class="label label-important">Important</span> Proximity is not enabled on Android 4.4.x devices by default. You can enabled this on a per application basis in Gimbal Manager.
+	                </ul>
+                </li>
+                <li>Are using <a href='http://www.eclipse.org/downloads/' target='_blank'>Eclipse Indigo</a> (3.7) or higher</li>
+                <li>Have installed the <a href='http://developer.android.com/tools/sdk/eclipse-adt.html' target='_blank'>Eclipse Android ADT plug-in</a></li>
+                <li><a href='http://developer.android.com/sdk/installing/adding-packages.html' target='_blank'>Use the ADT plug-in</a> to download a version of Android equal to API 21</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="create_new_eclipse_project" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Create a new Eclipse project</h2>
+
+        <p>In Eclipse choose <code>File > New > Project</code> and search for "Android Application Project".</p>
+
+        <p>Fill out your "Application Name", "Project Name", and "Package Name" fields.</p> 
+
+        <p><b><span class="label label-important">Important</span></b> The "Minimum Required SDK" should be set to API 14, "Target SDK" and "Compile With" fields should be set to API 21. Then click through the rest of the "New Android Application" setup wizard.</p>
+
+        <p><img src="../../images/eclipse-new-app-v2.png"/></p>
+
+    </div>
+</div>
+
+<div id="add_jars" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add these jars to your project</h2>
+
+        <div class="well">
+            <ul>
+                <li>gimbal-dev-logging.jar</li>
+                <li>gimbal.jar</li>
+                <li>spring-android-core-1.0.1.RELEASE.jar </li>
+                <li>spring-android-rest-template-1.0.1.RELEASE.jar</li>
+            </ul>
+        </div>
+
+        <p><b><span class="label label-info">Note</span></b> You will find these jars in the <code>gimbal-sampleapp/libs</code> folder inside the Gimbal SDK zip file.</p>
+
+        <p>Add jars to your Android application by copy and pasting them into the <code>libs</code> folder of your android project.</p>
+        
+        <p>Your project should now look similar to this. You may need to select 'File' then 'Refresh' in Eclipse to see the added jar files.</p>
+
+        <p><img src="../../images/eclipse-libraries-v2.png"/></p>
+
+    </div>
+</div>
+
+<div id="create_gimbal_app" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Create Your Gimbal Application</h2>
+
+        <p>Create Your Gimbal Application in the Gimbal Manager.</p>
+
+        <p><a href="https://manager.gimbal.com/apps/new" class="btn btn-primary btn-large" target="_blank">Create Gimbal Application &raquo;</a></p>
+        <br><br>
+
+        <p>You will be presented with a form where you will select the Android platform and enter a package name. Enter the package name you set in your Eclipse New Application.</p>
+
+        <p><img src="../../images/create-android-app-v2.png" width="1182" height="224"/></p>
+
+        <p>Hit the 'Generate' button. Once finished, your app will have a Gimbal API Key.</p>
+
+        <p><img src="../../images/registered-app-android-v2.png" width=1193" height="284"/></p>
+
+        <p><span class="label label-important">Important</span> You'll need your Gimbal API Key to run your Android app.</p>
+
+    </div>
+</div>
+
+<div id="set_api_key_qs" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Set Your Gimbal API Key</h2>
+
+        <p>Add this code to the top of your MainActivity source file.</p>
+
+        <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.Gimbal;
+        </pre>
+
+        <p>Add this code to your <code>onCreate(Bundle savedInstanceState)</code> method, inserting your specific Gimbal API Key.</p>
+
+        <pre class="prettyprint lang-js">
+
+    Gimbal.setApiKey(this.getApplication(), "## PLACE YOUR API KEY HERE ##");
+        </pre>
+
+
+    </div>
+</div>
+
+<div id="set_place" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+    <h2>Create PlaceEventListener and add it to the PlaceManager instance.</h2>
+
+        <p>Import the following classes.</p>
+
+        <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceManager;
+    import com.gimbal.android.PlaceEventListener;
+    import com.gimbal.android.Place;
+    import com.gimbal.android.Visit;
+        </pre>
+
+        <p>Set an instance variable to hold your PlaceEventListener object<p>
+        <pre class="prettyprint lang-js">
+
+    private PlaceEventListener placeEventListener;
+        </pre>
+
+        <p>Create and implement the PlaceEventListener interface. Add the PlaceEventListener to the PlaceManager instance. This will allow your app to receive place enter and exit events.</p>
+        <p>For example, you can add the following code in <code>onCreate(Bundle savedInstanceState)</code> method.</p>
+
+        <pre class="prettyprint lang-js">
+
+    placeEventListener = new PlaceEventListener() {
+        @Override
+        public void onVisitStart(Visit visit) {
+            // This will be invoked when a place is entered. Example below shows a simple log upon enter
+            Log.i("Info:", "Enter: " + visit.getPlace().getName() + ", at: " + new Date(visit.getArrivalTimeInMillis()));
+        }
+
+        @Override
+        public void onVisitEnd(Visit visit) {
+            // This will be invoked when a place is exited. Example below shows a simple log upon exit
+            Log.i("Info:", "Exit: " + visit.getPlace().getName() + ", at: " + new Date(visit.getDepartureTimeInMillis()));
+        }
+    };
+    PlaceManager.getInstance().addListener(placeEventListener);
+        </pre>
+
+    </div>
+</div>
+
+<div id="set_comm" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+    <h2>Create CommunicationListener and add it to the CommunicationManager instance</h2>
+
+        <p>Import the following classes.</p>
+
+        <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.CommunicationManager;
+    import com.gimbal.android.CommunicationListener;
+    import com.gimbal.android.Communication;
+        </pre>
+
+        <p>Set an instance variable to hold your CommunicationListener object<p>
+        <pre class="prettyprint lang-js">
+
+    private CommunicationListener communicationListener;
+        </pre>
+
+        <p>Create and implement the CommunicationListener interface. Add the CommunicationListener to the CommunicationManager instance. This will allow your app to receive communications associated with the place enter and exit events.</p>
+        <p>For example, you can add the following code in <code>onCreate(Bundle savedInstanceState)</code> method.</p>
+
+        <pre class="prettyprint lang-js">
+
+    communicationListener = new CommunicationListener() {
+        @Override
+        public Collection&lt;Communication&gt; presentNotificationForCommunications(Collection&lt;Communication&gt; communications, Visit visit) {
+             for (Communication comm : communications) {
+                Log.i("INFO", "Place Communication: " + visit.getPlace().getName() + ", message: " + comm.getTitle());
+            }
+            //allow Gimbal to show the notification for all communications
+            return communications;
+        }
+        
+        @Override
+        public Collection&lt;Communication&gt; presentNotificationForCommunications(Collection&lt;Communication&gt; communications, Push push) {
+             for (Communication comm : communications) {
+                Log.i("INFO", "Received a Push Communication with message: " + comm.getTitle());
+            }
+            //allow Gimbal to show the notification for all communications
+            return communications;
+        }
+
+        @Override
+        public void onNotificationClicked(List<Communication> communications) {
+            Log.i("INFO", "Notification was clicked on");
+        }
+    };
+    CommunicationManager.getInstance().addListener(communicationListener);
+        </pre>
+
+    </div>
+</div>
+
+<div id="set_beacon" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+    <h2>Create BeaconEventListener and add it to the BeaconManager instance</h2>
+    <p><b><span class="label label-info">Note</span></b> Place monitoring and beacon monitoring works independently of each other. For example, beacon monitoring is not required to get place events.</p>
+
+        <p>Import the following classes.</p>
+
+        <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.BeaconEventListener;
+    import com.gimbal.android.BeaconManager;
+    import com.gimbal.android.BeaconSighting;
+        </pre>
+
+        <p>Set an instance variable to hold your BeaconEventListener object<p>
+        <pre class="prettyprint lang-js">
+
+    private BeaconEventListener beaconSightingListener;
+    private BeaconManager beaconManager;
+        </pre>
+
+        <p>Create and implement the BeaconEventListener interface. Add the BeaconEventListener to the BeaconManager instance. This will allow your app to receive sightings associated with your beacons.</p>
+        <p>For example, you can add the following code in <code>onCreate(Bundle savedInstanceState)</code> method.</p>
+
+        <pre class="prettyprint lang-js">
+
+    beaconSightingListener = new BeaconEventListener() {
+            @Override
+            public void onBeaconSighting(BeaconSighting sighting) {
+                Log.i("INFO", sighting.toString());
+            }
+        };
+        beaconManager = new BeaconManager();
+        beaconManager.addListener(beaconSightingListener);
+        </pre>
+
+    </div>
+</div>
+
+<div id="start_mon_qs" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Start Place and Beacon Monitoring</h2>
+
+        <p>Add this code after the implementations for Listener interfaces above. This will start the service to allow for place monitoring and beacon monitoring.</p>
+
+        <pre class="prettyprint lang-js">
+
+    PlaceManager.getInstance().startMonitoring();
+    beaconManager.startListening();
+        </pre>
+
+    </div>
+</div>
+
+<div id="update_manifest" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Update Manifest</h2>
+
+        <p>To allow Gimbal Services to function, you need to add a few elements to your <code>AndroidManifest.xml</code> file.</p>
+
+        <pre class="prettyprint lang-xml">
+
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.WAKE_LOCK" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /&gt;
+    &lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;
+    &lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /&gt;
+        </pre>
+
+
+<div id="add_place" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add Place using the Gimbal Manager</h2>
+        <p><a href="https://manager.gimbal.com/places/new"
+              class="btn btn-primary btn-large" target="_blank">Add New Place &raquo;</a></p>
+
+        <p><b><span class="label label-important">Places</span></b> As stated earlier, v2 introduces the concept of places. A Place can be represented by a single geofence and/or a series of beacons. Thus, when you create a Place in Gimbal Manager you can draw a geofence and/or choose a set of beacons to define the Place.​ As a developer, you would add Communications or other triggers to occur on a Place Entry or Exit.</p>
+
+        <h2>Activate Beacon</h2>
+
+        <p>A Place can contain one or more Beacons. Activation tells Gimbal to associate the Beacon with your account. To trigger place events for your beacons, please activate your beacons first.</p>
+
+        <p><b><span class="label label-info">Note</span></b> You'll need to open the Beacon to find the ID.
+        </p>
+
+        <img src="../../images/bid-label.png"/>
+
+        <p><a href="https://manager.gimbal.com/transmitters/new"
+              class="btn btn-primary btn-large" target="_blank">Activate Beacon &raquo;</a></p>
+
+    </div>
+</div>
+
+<div id="add_comm" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h2>Add Communication using the Gimbal Manager</h2>
+
+        <p>A Communication can be associated to a Place event. To trigger a Communication based on Place events, please add a Communication.</p>
+
+        <p><a href="https://manager.gimbal.com/communicate/new"
+              class="btn btn-primary btn-large" target="_blank">Add New Communication &raquo;</a></p>
+    </div>
+</div>
+
+<div id="run_app" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <div>
+            <h2>Run Application</h2>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <p><b><span class="label label-important">Important</span></b> Bluetooth needs to be turned on if using Beacons.
+                </p>
+                <p>Once Gimbal Services detects the Places in the Gimbal Manager you should see your specific log entries for Place Events and any Communications associated with your Place.</p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!-- Initialization -->
+
+<div id="initialization"></div>
+
+<div id="application_configuration" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Application Configuration</h1>
+        <hr/>
+        <p>
+        There are a number of application settings that you can configure. 
+        These can can be found by clicking on the Application’s Bundle ID / Package Name within Gimbal Manager.
+		</p>
+		
+		<h3>Place detection with Beacons</h3>
+		<p>
+		The following settings control how place events are triggered. 
+		Note: any of the similar settings you set for a Place take precedence over these app-wide settings.         
+        </p>
+        
+        <h4>Arrival RSSI</h4>
+        <p>
+		The 'Arrival RSSI' setting allows you to specify a specific RSSI (signal strength) to be used in determining if a beacon sighting should be processed as an arrival to a beacon. Signals weaker than 'Arrival RSSI' will be ignored. 
+		<br/>
+		Default = null, such that whenever a beacon is first detected it will cause a sighting and an arrival. 
+		<br/>
+		You may wish to modify this value if you wish to decrease the range of when a  beacon trigger an arrival.
+        </p>
+        
+        <h4>Departure RSSI</h4>
+        <p>
+		The 'Departure RSSI' setting allows you to specify a specific RSSI (signal strength) to be used in determining if a beacon sighting should be processed as a departure. Signals weaker than 'Departure RSSI' will be ignored. 
+		<br/>
+		Note that the Departure RSSI must be at least 10dBm lower than the 'Arrival RSSI'. This is done to avoid excessive bouncing (where arrival and departures events are triggered repeatedly, even when both the mobile device and beacon are standing still).
+		</p>
+		        
+        <h4>Departure interval in seconds</h4>
+        <p>
+		The ‘Departure interval’ is the number of seconds that must elapse where the SDK does not see a beacon RSSI level stronger than the Departure RSSI before processing the departure.
+ 		</p>
+		        
+        <h4>Smoothing Window</h4>
+        <p>
+		The smoothing algorithm processes RSSI signal strengths from sightings to make them less jumpy. The larger the smoothing window the more steady the output RSSI readings will be.
+		</p>
+		        
+        <h3>Beacon Support on Android 4.4.3 and 4.4.4</h3>
+        <p>
+        This setting allows you to enable beacon support on Android 4.4.3 and 4.4.4 devices. 
+		Please note, these versions of Android have known performance issues.
+        <a href="https://www.youtube.com/watch?v=2fZThdNbHcQ">Learn more</a>
+		</p>
+		        
+		<h3>SDK Feature Enablement</h3>
+		<p>
+		These settings allow you to turn specific features on/off.
+		</p>
+		        
+        <h4>Geofence Monitoring</h4>
+        <p>
+		Allows you to turn on/off geofencing monitoring. 
+		<br/>
+		This may be desired if your application only uses beacon-based places.
+		</p>
+		        
+        <h4>Beacon Monitoring</h4>
+        <p>
+		Allows you to turn off beacon monitoring. This will affect both beacon-based Place detection and beacon detection. 
+		<br/>
+		This may be useful if your application only uses geofence-based places.
+		</p>
+		
+		<h4>Communicate Delivery</h4>
+		<p>
+		Allows you to turn on/off Communicate delivery.
+		<br/>
+		This may be useful if your application does not use the Communicate feature.
+		</p>
+
+        <h4>Manage Ad ID</h4>
+        <p>
+        Allows you to turn on/off management of advertisement identifier changes on the device.  This functionality is off by default.
+        <br/>
+        This may be useful if your application does not have advertising permissions.
+        </p>
+		        
+    </div>
+</div>
+
+<div id="api_guide" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12" id="set_api_key">
+
+        <h1>API Guide</h1>
+        <p>Thew following guide details our application programming interfaces.</p>
+        <p><b><span class="label label-info">Note</span></b> You will find the complete API listing in the <code>javadoc/gimbal</code> folder inside the Gimbal SDK zip file.</p>
+        <hr/>
+
+        <h1>Set API key</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call sets the API key for your Gimbal application. When you register an application on the Developer Portal the API key is generated and supplied to you.</p>
+                <p>This was done in the previous section <a href="#create_gimbal_app">Create Gimbal Application</a>.</p>
+
+                <h2>Sample</h2>
+                    <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.Gimbal;
+    ...
+    Gimbal.setApiKey(this.getApplication(), "## PLACE YOUR API KEY HERE ##");
+                    </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="reset_appID" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Reset Application Instance Identifier</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call dissociate a device and data (place events) reported by the application running on
+                    that device. The open place sightings gets closed on server. Data on
+                    device also gets cleared due to this API invocation.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.Gimbal;
+    ...
+    Gimbal.resetApplicationInstanceIdentifier();
+                </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Push -->
+<div id="push"></div>
+
+<div id="set_gcm" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Set Up Google Cloud Messaging (GCM)</h1>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>Gimbal uses Google Cloud Messaging (GCM) for enabling push on Android. In order to use GCM you'll have to setup your application on Google Devloper Console and obtain a GCM Sender ID and the Server key for the GCM Service. Please refer to <a href="http://developer.android.com/google/gcm/gs.html">GCM getting started</a> and follow the steps to generate these keys. Here's an overview of the steps you'll have to follow:</p>
+
+                <p>From <a href="https://console.developers.google.com/">Google Developer Console</a></p>
+                <div class="well">
+                    <ul>
+                        <li>Create a Google API project in Google Developer Console</li>
+                        <li>Once a project has been created, your project Number is available. This project number is the GCM Sender ID.</li>
+                        <li>Enable the GCM for Android API</li>
+                        <li>Create a Server API Key. This is the Cloud Messaging Key you will enter in your Gimbal application.</li>
+                    </ul>
+                </div>
+
+                <p><b><span class="label label-info">Note</span></b> Before moving forward make sure that you have obtained the Server key and Sender ID (project number) from Google Developer Console. Also ensure that Google Cloud Messaging for Android is enabled for your application.</p>
+
+                <h2>Add Google Server API Key to Gimbal Manager</h2>
+
+                <p>On Gimbal Manager, select your existing Android application and scroll down to the Google Cloud Messaging Key section to setup Android push. Enter the Server API Key (created from Google Developer Console) and hit save. Now your application is set to send push messages.</p>
+
+                <p><img src="../../images/gcm.png" width="1100" height="350"/></p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="update_manifest_push" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Add Google Play Service</h1>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <p>Google Play service is used on the client to enable receiving push messages. Please follow the directions from Google for <a href="http://developer.android.com/google/play-services/setup.html">Setting Up Google Play Services</a>.</p>
+
+                <h2>Update Manifest</h2>
+
+                <p>Edit your application's <code>AndroidManifest.xml</code> file and add the following declaration within the <code>&lt;application&gt;</code> element. This embeds the version of Google Play services that the app was compiled with.</p>
+
+<pre class="prettyprint lang-xml">
+
+    &lt;meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" /&gt;
+    
+</pre>
+                <p>Also add the following permission to allow Google to send push messages to your application.</p>
+<pre class="prettyprint lang-xml">
+
+    &lt;!-- FOR PUSH --&gt;
+    &lt;uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /&gt;
+    
+</pre>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="register_push" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Register For Push</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This call uses GCM to send messages to your app. Developer will use the Sender ID (project number generated from creating the Google API project) to register for Push.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.Gimbal;
+    ...
+    Gimbal.registerForPush("## PLACE YOUR Google API project # HERE ##");
+                </pre>
+
+                <h2>Receive Push Content</h2>
+
+                <p>Whenever a push is sent to the client, Gimbal will call the CommunicationListener method<code>shouldPresentNotificationForCommunications</code>. Your application can now decide whether or not to raise a notification to the User or allow the Gimbal SDK to raise the notification on your behalf.</p>
+
+                <pre class="prettyprint lang-js">
+                
+    public Collection&lt;Communication&gt; presentNotificationForCommunications(Collection&lt;Communication&gt; communications, Push push) {
+        // This will be invoked when there is a Push based communication.  The communications
+        // returned from this method will be presented as a Notification (collapsed notifications if more than one) 
+        // on behalf of the developer.
+        return filteredCommunications
+    }
+                  </pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="setup_push_comm" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Add Push Communication On Gimbal Manager</h1>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Send Instant Push</h2>
+
+                <p>Instant Pushes are pushes that are sent immediately. To send instant pushes, go to the Communications tab on Gimbal Manager. Click on Add Communication on the right and select Instant Communication.</p>
+
+                <p><img src="../../images/add_instant_communication.png"/></p>
+        
+                <p>On the next page fill in the details of your push message and click on Save &amp; Publish to send your Instant Communication to your device.</p>
+                <p><img src="../../images/publish_instant_communication.png"/></p>
+
+                <h2>Schedule Time Triggered Push</h2>
+
+                <p>Time Triggered Push Notifications are Push Notifications that are sent at a specified time. Go to the Communication tab on Gimbal Manager to send a Time Trigerred Push. Click on Add Communication on the right and select Communication.</p>
+
+                <p><img src="../../images/add_time_trigger_communicate.png"/></p>
+        
+                <p>Go to the Triggers tab and select triggers type to 'Time'. You will be able schedule time triggered push here.</p>
+                <p><img src="../../images/publish_time_trigger_communicate.png"/></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Place Manager -->
+<div id="place_manager"></div>
+<div id="is_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Check Monitoring</h1>   
+        <hr/>     
+        <div class="row-fluid">
+            <div class="span12">
+                <h2>Description</h2>
+        
+                <p>The PlaceManager defines the interface for delivering place entry and exits events to your Gimbal SDK enabled
+ application. You use an instance of this class to start or stop place monitoring and to check whether monitoring is enabled.</p>
+                
+                <p>Check if place monitoring has started.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceManager;
+    ...
+    PlaceManager.getInstance().isMonitoring();
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="start_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Start Monitoring</h1> 
+        <hr/>       
+        <div class="row-fluid">
+            <div class="span12">
+                <h2>Description</h2>
+                <p>Starts the generation of events based on the users location and proximity to geofences and beacons.</p>
+
+                <h2>Sample</h2>
+                
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceManager;
+    ...
+    PlaceManager.getInstance().startMonitoring();
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="stop_monitoring" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Stop Monitoring</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Stops the generation of events based on the users location and proximity to geofences and beacons.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceManager;
+    ...
+    PlaceManager.getInstance().stopMonitoring();
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="placeEventListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Place Event Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the listener for place event notifications. One of the following methods will be invoked based on the place event. </p>
+
+                <h2>Place Event Methods</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceEventListener;
+    import com.gimbal.android.Place;
+    import com.gimbal.android.Visit;
+    ...
+    public void onVisitStart(Visit visit) {
+
+        // This will be invoked when a place is entered
+    }
+
+    public void onVisitEnd(Visit visit) {
+        // This will be invoked when a place is exited
+    }
+
+                </pre>
+                <h4>Visit Accessor Methods</h4>
+                <p>The Vist class defines the period of time which a User dwelled at a place.  A Visit without a departure time represents an active visit where the User is still dwelling at a place.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>getPlace()</td>
+                        <td>returns the place the visit is associated to</td>
+                    </tr>
+                    <tr>
+                        <td>getArrivalTimeInMillis()</td>
+                        <td>returns time in milliseconds at which the User arrived at a Place</td>
+                    </tr>
+                    <tr>
+                        <td>getDepartureTimeInMillis()</td>
+                        <td>returns time in milliseconds at which the User was considered to be departed from a Place</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Place Accessor Methods</h4>
+                <p>The Place class defines a place which is represented by a geofence (circular or polygonal) or a series of beacons. A place is defined in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>getIdentifier()</td>
+                        <td>return the unique identifier for this place</td>
+                    </tr>
+                    <tr>
+                        <td>getName()</td>
+                        <td>returns the name assigned to this place</td>
+                    </tr>
+                    <tr>
+                        <td>getAttributes()</td>
+                        <td>returns the attributes of this place</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="add_placeEventListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Add Place Event Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Add Place Event Listener to your Place Manager Instance.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.PlaceManager;
+    import com.gimbal.android.PlaceEventListener;
+    ...
+    PlaceManager.getInstance().addListener(placeEventListener);
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- communication_manager Manager -->
+<div id="communication_manager"></div>
+<div id="communicationListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Communication Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the listener for communications. One of the following methods will be invoked based on the communication event. </p>
+
+                <h2>Communication Methods</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.CommunicationListener;
+    import com.gimbal.android.Communication;
+    import com.gimbal.android.Place;
+    ...
+
+    public Collection&lt;Communication&gt; presentNotificationForCommunications(Collection&lt;Communication&gt; communications, Visit visit) {
+        // This will be invoked when there is a communication associated with a Place Entry or Exit.  The communications
+        // returned from this method will be presented as a Notification (collapsed notifications if more than one) 
+        // on behalf of the developer.
+        return filteredCommunications;
+    }
+
+    public Collection&lt;Communication&gt; presentNotificationForCommunications(Collection&lt;Communication&gt; communications, Push push) {
+        // This will be invoked when there is a Push based communication.  The communications
+        // returned from this method will be presented as a Notification (collapsed notifications if more than one) 
+        // on behalf of the developer.
+        return filteredCommunications
+    }
+
+    public void onNotificationClicked(List<Communication> communications) {
+        // This method will be invoked when a user has clicked on a presented notification.  The first Communication in the list is the
+        //notification visible to the end user and the rest were collapsed.
+    }
+
+                </pre>
+
+                <h4>Communication Accessor Methods</h4>
+                <p>A Communication is defined in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>getAttributes()</td>
+                        <td>returns the attributes of this communication</td>
+                    </tr>
+                    <tr>
+                        <td>getDescription()</td>
+                        <td>returns the description for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>getIdentifier()</td>
+                        <td>returns the identifier for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>getExpiryTimeInMillis()</td>
+                        <td>returns the expiration time for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>getTitle()</td>
+                        <td>returns the title for this communication</td>
+                    </tr>
+                    <tr>
+                        <td>getURL()</td>
+                        <td>returns the url for this communication</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+                <h4>Place Accessor Methods</h4>
+                <p>The Place class defines a place which is represented by a geofence (circular or polygonal) or a series of beacons. A place is defined in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>getIdentifier()</td>
+                        <td>return the unique identifier for this place as type String</td>
+                    </tr>
+                    <tr>
+                        <td>getName()</td>
+                        <td>returns the name assigned to this place as type String</td>
+                    </tr>
+                    <tr>
+                        <td>getAttributes()</td>
+                        <td>returns the attributes of this place as type Attributes</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Attributes Interface</h4>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>getAllKeys()</td>
+                        <td>returns all the keys as type List&lt;String&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>getValue(String key)</td>
+                        <td>returns the value of the key as type String</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="add_communicationListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Add Communication Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Add Communication Listener to your Communication Manager Instance.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.CommunicationManager;
+    import com.gimbal.android.CommunicationListener;
+    ...
+    CommunicationManager.getInstance().addListener(communicationListener);
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Beacon Manager -->
+<div id="beacon_manager"></div>
+
+<div id="start_sighting" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Start Listening for Beacons</h1> 
+        <hr/>       
+        <div class="row-fluid">
+            <div class="span12">
+                <h2>Description</h2>
+                <p>Starts the beacon monitoring to allow for beacon sightings.</p>
+
+                <h2>Sample</h2>
+                
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.BeaconManager;
+    ...
+    BeaconManager manager = new BeaconManager()
+    manager.startListening();
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="stop_sighting" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Stop Listening for Beacons</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Stops beacon listening. No beacons will be sighted.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.BeaconManager;
+    ...
+    BeaconManager manager = new BeaconManager()
+    manager.stopListening();
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="beaconEventListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Beacon Event Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>This is the listener for beacon sightings. The following method will be invoked upon beacon sighting. </p>
+
+                <h2>Beacon Method</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.BeaconEventListener;
+    import com.gimbal.android.BeaconSighting;
+    ...
+    public void onBeaconSighting(BeaconSighting sighting) {
+        // This will be invoked upon beacon sighting
+    }
+
+                </pre>
+
+                <h4>BeaconSighting Accessor Methods</h4>
+                <p>A Beacon is activated in the Gimbal Manager portal.</p>
+
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>getRSSI()</td>
+                        <td>returns the RSSI for the beacon sighted as type Integer</td>
+                    </tr>
+                    <tr>
+                        <td>getTimeInMillis()</td>
+                        <td>returns the time for the beacon sighted as type Long</td>
+                    </tr>
+                    <tr>
+                        <td>getBeacon()</td>
+                        <td>returns the beacon sighted as type Beacon</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+                <h4>Beacon Accessor Methods</h4>
+                <table class='table table-striped table-bordered table-condensed'>
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>getIdentifier()</td>
+                        <td>returns the unique identifier for this beacon as type String</td>
+                    </tr>
+                    <tr>
+                        <td>getName()</td>
+                        <td>returns the name assigned to the beacon as type String</td>
+                    </tr>
+                    <tr>
+                        <td>getIconURL()</td>
+                        <td>returns the url of the icon assigned to the beacon as type String</td>
+                    </tr>
+                    <tr>
+                        <td>getBatteryLevel()</td>
+                        <td>returns the battery level of the beacon as type Integer</td>
+                    </tr>
+                    <tr>
+                        <td>getTemperature()</td>
+                        <td>returns the temperatur of the beacon as type Integer</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="add_beaconEventListener" class="row-fluid api_row">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Add a Beacon Event Listener</h1>
+        <hr/>
+
+        <div class="row-fluid">
+            <div class="span12">
+
+                <h2>Description</h2>
+
+                <p>Add a Beacon Listener to your Beacon Manager Instance.</p>
+
+                <h2>Sample</h2>
+                <pre class="prettyprint lang-js">
+
+    import com.gimbal.android.BeaconEventListener;
+    import com.gimbal.android.BeaconManager;
+    ...
+    BeaconManager manager = new BeaconManager()
+    manager.addListener(beaconEventListener);
+
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="beacon_config" class="row-fluid">
+    <div style="height: 40px;"></div>
+    <div class="span12">
+
+        <h1>Beacon Configuration</h1>
+
+        <p>For information on default beacon configurations and how to assign and push a configuration, please refer to the link provided</p>
+
+        <p><a href="../../proximity_overview.html#beacon_configuration" class="btn btn-primary btn-large" target="_blank">Beacon Configuration &raquo;</a></p>
+
+    </div>
+</div>
+
+
+</div>
+</div>
+
+
+    <footer class="row-fluid">
+
+         
+
+             <div id="footer" class="span12">
+
+        <p>&copy; 2014 Gimbal, Inc. All rights reserved. Gimbal is a trademark of Gimbal, Inc.,registered in the United States and other countries. QUALCOMM is a trademark of QUALCOMM Incorporated, registered in the United States and other countries.</p>
+        <p>Use of the iBeacon logo means that a Licensed Product has been designed and certified by the manufacturer to meet Apple performance standards. Apple is not responsible for the operation of this device or its compliance with safety and regulatory standards. Please note that the use of this product with iPod, iPhone, or iPad may affect wireless performance.
+        </p>
+        <p>
+        iPad, iPhone, iPod, and iPod touch are trademarks of Apple Inc., registered in the U.S. and other countries. iBeacon is a trademark of Apple Inc.
+        </p>
+
+            </div>
+         
+
+    </footer>
+
+ 
+
+                
+
+<script src="../../js/jquery-1.8.2.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/prettify.js"></script>
+<script type="text/javascript" src="../../js/nav-scrolling.js"></script>
+
+</body>
+</html>
