@@ -131,7 +131,16 @@
     }
     
     transmitter.lastSighted = updateTime;
+    
+    //write to file
     NSLog(@"ID: %@, RSSI: %@", visit.transmitter.identifier, RSSI);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString  *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, self.spotName];
+    NSMutableString *contents = [NSMutableString stringWithContentsOfFile:filePath encoding:NSStringEncodingConversionAllowLossy error:nil];
+    NSString *content = [NSString stringWithFormat:@"%@\nID: %@, RSSI: %@", contents, visit.transmitter.identifier, RSSI];
+    [content writeToFile:filePath atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+    
     if ([self shouldUpdateTransmitterCell:visit transmitter:transmitter RSSI:RSSI])
     {
         transmitter.previousRSSI = transmitter.rssi;

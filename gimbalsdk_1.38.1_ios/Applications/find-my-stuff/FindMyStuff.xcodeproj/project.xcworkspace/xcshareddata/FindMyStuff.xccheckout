@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>27CB1FC8-9E84-47CF-9F6C-4E73EA4DC0AE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FindMyStuff</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2B90D1F4D32966FEDD7D88F37E59B1D2DDB582F4</key>
+		<string>https://github.com/VidaInc/BeaconRecorder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>gimbalsdk_1.38.1_ios/Applications/find-my-stuff/FindMyStuff.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2B90D1F4D32966FEDD7D88F37E59B1D2DDB582F4</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/VidaInc/BeaconRecorder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2B90D1F4D32966FEDD7D88F37E59B1D2DDB582F4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2B90D1F4D32966FEDD7D88F37E59B1D2DDB582F4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Beacon</string>
+		</dict>
+	</array>
+</dict>
+</plist>
